@@ -403,6 +403,7 @@ GameObject:
   - component: {fileID: 316955654}
   - component: {fileID: 316955653}
   - component: {fileID: 316955656}
+  - component: {fileID: 316955657}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -494,6 +495,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 82230bac58dd1de4b8c22474ccfd2e68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &316955657
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 316955652}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 085c0704f9386cf4881f2a48a77dd55f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &389227140
@@ -818,8 +831,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 316955656}
-        m_TargetAssemblyTypeName: ButtonScript, Assembly-CSharp
+      - m_Target: {fileID: 316955657}
+        m_TargetAssemblyTypeName: ButtonManager, Assembly-CSharp
         m_MethodName: PlayGame
         m_Mode: 1
         m_Arguments:
@@ -1019,9 +1032,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 316955656}
-        m_TargetAssemblyTypeName: ButtonScript, Assembly-CSharp
-        m_MethodName: BackToMain
+      - m_Target: {fileID: 316955657}
+        m_TargetAssemblyTypeName: ButtonManager, Assembly-CSharp
+        m_MethodName: BacktoMain
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1152,8 +1165,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 316955656}
-        m_TargetAssemblyTypeName: ButtonScript, Assembly-CSharp
+      - m_Target: {fileID: 316955657}
+        m_TargetAssemblyTypeName: ButtonManager, Assembly-CSharp
         m_MethodName: QuitGame
         m_Mode: 1
         m_Arguments:
