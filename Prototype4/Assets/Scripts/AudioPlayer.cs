@@ -6,9 +6,9 @@ using UnityEngine.UI;
 
 public class AudioPlayer : MonoBehaviour
 {
-    public AudioSource gun, enemyDeath;
+    public AudioSource gun, enemyDeath, bombPickup, bombDrop;
 
-    public AudioClip pewSound, enemyDeath1, enemyDeath2, enemyDeath3;
+    public AudioClip pewSound, enemyDeath1, enemyDeath2, enemyDeath3, pickupSound, dropSound;
 
     // Update is called once per frame
     void Update()
@@ -31,6 +31,12 @@ public class AudioPlayer : MonoBehaviour
                 break;
             case "enemyDeath3":
                 enemyDeath.PlayOneShot(enemyDeath3);
+                break;
+            case "pickup":
+                bombPickup.PlayOneShot(pickupSound);
+                break;
+            case "drop":
+                bombDrop.PlayOneShot(dropSound);
                 break;
         }
     }

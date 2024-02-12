@@ -1068,9 +1068,9 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: In a post-apocolyptic world, you're building a bomb to wipe out the infected
-    enemies. You have a gun, but that and your speed are hindered by the weight of
-    the bomb parts, so be careful delivering the bomb to the drop off zone in between
-    the pool and field of trees. Be ready to escape once the bomb is finished.
+    enemies. You have a gun, but you can't shoot when carrying the bomb parts, so
+    be careful delivering the bomb to the drop off zone in between the pool and field
+    of trees. Be ready to escape once the bomb is finished.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: e73a58f6e2794ae7b1b7e50b7fb811b0, type: 2}
@@ -1441,7 +1441,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1419843969
 RectTransform:
   m_ObjectHideFlags: 0

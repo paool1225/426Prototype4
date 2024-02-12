@@ -159,6 +159,9 @@ MonoBehaviour:
   moveSpeed: 10
   rb: {fileID: 119148056}
   weapon: {fileID: 507306313}
+  objectLayer:
+    serializedVersion: 2
+    m_Bits: 256
 --- !u!58 &119148055
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -219,7 +222,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 1
+  m_CollisionDetection: 0
   m_Constraints: 4
 --- !u!212 &119148057
 SpriteRenderer:
@@ -449,9 +452,9 @@ GameObject:
   - component: {fileID: 391610251}
   - component: {fileID: 391610249}
   - component: {fileID: 391610253}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: BombPart
-  m_TagString: Bomb
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -482,7 +485,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 4
+  m_Constraints: 7
 --- !u!212 &391610251
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -582,7 +585,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.20747566, y: -0.06915665}
+  m_Offset: {x: 0.20747566, y: -0.010044098}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -593,7 +596,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 4.2293816, y: 2.5300674}
+  m_Size: {x: 4.2293816, y: 2.805931}
   m_EdgeRadius: 0
 --- !u!1 &466175041
 GameObject:
@@ -840,9 +843,9 @@ GameObject:
   - component: {fileID: 538566661}
   - component: {fileID: 538566659}
   - component: {fileID: 538566663}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: BombPart (1)
-  m_TagString: Bomb
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -873,7 +876,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 4
+  m_Constraints: 7
 --- !u!212 &538566661
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -973,7 +976,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.26651406, y: -0.06952524}
+  m_Offset: {x: 0.26651406, y: -0.010412216}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -984,7 +987,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 4.14252, y: 2.4970865}
+  m_Size: {x: 4.14252, y: 2.7729483}
   m_EdgeRadius: 0
 --- !u!1001 &559594144
 PrefabInstance:
@@ -1160,6 +1163,7 @@ GameObject:
   m_Component:
   - component: {fileID: 727795765}
   - component: {fileID: 727795764}
+  - component: {fileID: 727795766}
   m_Layer: 0
   m_Name: DropOffZone
   m_TagString: DropOffZone
@@ -1227,6 +1231,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &727795766
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 727795763}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11fad767e166af04f95f9428744d562d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uiManager: {fileID: 1831336857}
 --- !u!1 &817934383
 GameObject:
   m_ObjectHideFlags: 0
@@ -1869,7 +1886,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Parts Delivered: 0/4'
+  m_text: 'Holding Part: No'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: e73a58f6e2794ae7b1b7e50b7fb811b0, type: 2}
@@ -1896,7 +1913,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 63.25
+  m_fontSize: 72
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -2042,9 +2059,9 @@ GameObject:
   - component: {fileID: 1289584051}
   - component: {fileID: 1289584049}
   - component: {fileID: 1289584053}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: BombPart (3)
-  m_TagString: Bomb
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2075,7 +2092,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 4
+  m_Constraints: 7
 --- !u!212 &1289584051
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2175,7 +2192,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.23711395, y: 0.039518356}
+  m_Offset: {x: 0.23711395, y: -0.029445648}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -2186,7 +2203,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 4.2096214, y: 2.4707832}
+  m_Size: {x: 4.2096214, y: 2.8451614}
   m_EdgeRadius: 0
 --- !u!1 &1321138677
 GameObject:
@@ -7262,9 +7279,9 @@ GameObject:
   - component: {fileID: 1359436370}
   - component: {fileID: 1359436368}
   - component: {fileID: 1359436372}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: BombPart (2)
-  m_TagString: Bomb
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7295,7 +7312,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 4
+  m_Constraints: 7
 --- !u!212 &1359436370
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -7395,7 +7412,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.28651237, y: 0.02963829}
+  m_Offset: {x: 0.28651237, y: 0.029639244}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -7406,7 +7423,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 4.4269753, y: 2.569584}
+  m_Size: {x: 4.4269753, y: 2.8454456}
   m_EdgeRadius: 0
 --- !u!1 &1360842578
 GameObject:
@@ -8158,10 +8175,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gun: {fileID: 1645932022}
   enemyDeath: {fileID: 1645932025}
+  bombPickup: {fileID: 0}
+  bombDrop: {fileID: 0}
   pewSound: {fileID: 8300000, guid: b6c847951676623499e20ec8d07b1bc3, type: 3}
   enemyDeath1: {fileID: 8300000, guid: 1e743279e1130d14d923f4819be498d2, type: 3}
   enemyDeath2: {fileID: 8300000, guid: dd30f670103b75142b143228e645333e, type: 3}
   enemyDeath3: {fileID: 8300000, guid: 126916c9819c6114199bf30d5e5b556e, type: 3}
+  pickupSound: {fileID: 8300000, guid: c70cdbb38b0d56241aff5103f46c12ab, type: 3}
+  dropSound: {fileID: 8300000, guid: 2ecb9888d504e07458a66f76c40b0813, type: 3}
 --- !u!82 &1645932025
 AudioSource:
   m_ObjectHideFlags: 0
@@ -8337,6 +8358,7 @@ GameObject:
   - component: {fileID: 1831336856}
   - component: {fileID: 1831336855}
   - component: {fileID: 1831336854}
+  - component: {fileID: 1831336857}
   m_Layer: 0
   m_Name: Square
   m_TagString: Untagged
@@ -8456,6 +8478,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1831336857
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1831336852}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9d47fa41e1f0c34f867533b35c98be4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  partsCollectedText: {fileID: 1862439650}
+  partsLeftText: {fileID: 228864340}
+  holdingPartText: {fileID: 1188484894}
 --- !u!1 &1862439648
 GameObject:
   m_ObjectHideFlags: 0
@@ -8513,7 +8550,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Parts Collected: 0/4'
+  m_text: 'Parts In Dropoff: 0/4'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: e73a58f6e2794ae7b1b7e50b7fb811b0, type: 2}
@@ -8540,7 +8577,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 63.6
+  m_fontSize: 61.75
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -8942,16 +8979,16 @@ SceneRoots:
   - {fileID: 1032957421}
   - {fileID: 119148058}
   - {fileID: 1831336856}
+  - {fileID: 391610252}
+  - {fileID: 538566662}
+  - {fileID: 1359436371}
+  - {fileID: 1289584052}
   - {fileID: 1645932023}
   - {fileID: 1982290640}
   - {fileID: 1008845366}
   - {fileID: 1658542318}
   - {fileID: 1519540330}
   - {fileID: 727795765}
-  - {fileID: 391610252}
-  - {fileID: 538566662}
-  - {fileID: 1359436371}
-  - {fileID: 1289584052}
   - {fileID: 559594144}
   - {fileID: 1396921914}
   - {fileID: 1172445598}
