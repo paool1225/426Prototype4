@@ -3,38 +3,57 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.AI;
+using Random = UnityEngine.Random;
+using Vector2 = System.Numerics.Vector2;
+using UnityEngine.SceneManagement;
 
 public class EnemyAI : MonoBehaviour
 {
-    public Transform Player;
-    int MoveSpeed = 4;
-    int MaxDist = 1000;
-    int MinDist = 0;
+    //public Transform Player;
     public AudioPlayer enemyDeath;
+    public GameObject target;
+    UnityEngine.AI.NavMeshAgent agent;
 
+    void Awake()
+    {
+        agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
+        agent.updateRotation = false;
+        agent.updateUpAxis = false;
+    }
+    
     // Update is called once per frame
     void Update()
     {
-        transform.LookAt(Player);
-
-        if (Vector3.Distance(transform.position, Player.position) >= MinDist)
+        agent.SetDestination(target.transform.position);
+        Vector3 vector = target.transform.position - this.transform.position;
+        Quaternion targetRot = Quaternion.LookRotation(forward: Vector3.forward, upwards: Quaternion.Euler(0,0,90)*vector);
+        this.transform.rotation = Quaternion.Slerp(transform.rotation, targetRot, Time.deltaTime);
+    }
+    
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Bullet"))
         {
-
-            transform.position += transform.forward * MoveSpeed * Time.deltaTime;
-
-
-            /*
-            if (Vector3.Distance(transform.position, Player.position) <= MaxDist)
-            {
-                //Here Call any function U want Like Shoot at here or something
-            }
-            */
+            DestroyEnemy();
         }
     }
 
-    public void destroyEnemy()
+    private void DestroyEnemy()
     {
-        enemyDeath.playSounds("enemyDeath");
+        int randomDeathNoise = Random.Range(0, 9) % 3;
+        switch (randomDeathNoise)
+        {
+            case 0:
+                enemyDeath.PlaySounds("enemyDeath1");
+                break;
+            case 1:
+                enemyDeath.PlaySounds("enemyDeath2");
+                break;
+            case 2:
+                enemyDeath.PlaySounds("enemyDeath3");
+                break;
+        }
         Destroy(gameObject);
     }
 }

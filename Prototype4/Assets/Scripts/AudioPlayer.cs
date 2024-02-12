@@ -6,25 +6,31 @@ using UnityEngine.UI;
 
 public class AudioPlayer : MonoBehaviour
 {
-    public AudioSource source;
+    public AudioSource gun, enemyDeath;
 
-    public AudioClip pewSound, enemyDeath;
+    public AudioClip pewSound, enemyDeath1, enemyDeath2, enemyDeath3;
 
     // Update is called once per frame
     void Update()
     {
         if (Input.GetMouseButtonDown(0))
         {
-            source.PlayOneShot(pewSound);
+            gun.PlayOneShot(pewSound);
         }
     }
 
-    public void playSounds(string trigger)
+    public void PlaySounds(string trigger)
     {
         switch (trigger)
         {
-            case "enemyDeath":
-                source.PlayOneShot(enemyDeath);
+            case "enemyDeath1":
+                enemyDeath.PlayOneShot(enemyDeath1);
+                break;
+            case "enemyDeath2":
+                enemyDeath.PlayOneShot(enemyDeath2);
+                break;
+            case "enemyDeath3":
+                enemyDeath.PlayOneShot(enemyDeath3);
                 break;
         }
     }

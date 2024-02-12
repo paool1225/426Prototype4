@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.EventSystems;
 
 public class PlayerController : MonoBehaviour
@@ -12,12 +13,6 @@ public class PlayerController : MonoBehaviour
 
     private Vector2 mousePosition;
     private Vector2 moveDirection;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        //body = GetComponent<Rigidbody2D>();
-    }
 
     // Update is called once per frame
     void Update()
@@ -32,6 +27,11 @@ public class PlayerController : MonoBehaviour
 
         mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         moveDirection = new Vector2(moveX, moveY).normalized;
+
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            RestartGame();
+        }
     }
 
     private void FixedUpdate()
@@ -41,5 +41,10 @@ public class PlayerController : MonoBehaviour
         Vector2 aimDirection = mousePosition - rb.position;
         float aimAngle = Mathf.Atan2(aimDirection.y, aimDirection.x) * Mathf.Rad2Deg - 90f;
         rb.rotation = aimAngle;
+    }
+
+    private void RestartGame()
+    {
+        SceneManager.LoadScene( SceneManager.GetActiveScene().name );
     }
 }
