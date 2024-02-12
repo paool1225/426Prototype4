@@ -6,9 +6,15 @@ using UnityEngine.UI;
 
 public class AudioPlayer : MonoBehaviour
 {
+<<<<<<< Updated upstream
     public AudioSource gun, enemyDeath, bombPickup, bombDrop;
 
     public AudioClip pewSound, enemyDeath1, enemyDeath2, enemyDeath3, pickupSound, dropSound;
+=======
+    public AudioSource gun, enemyDeath, player;
+
+    public AudioClip pewSound, enemyDeath1, enemyDeath2, enemyDeath3, playerHit;
+>>>>>>> Stashed changes
 
     // Update is called once per frame
     void Update()

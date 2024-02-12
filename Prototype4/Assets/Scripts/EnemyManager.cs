@@ -6,6 +6,8 @@ using UnityEngine;
 public class EnemyManager : MonoBehaviour
 {
     public GameObject Enemy;
+
+    public float spawnRate;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,14 +18,14 @@ public class EnemyManager : MonoBehaviour
     {
         for (;;)
         {
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(spawnRate);
             spawnEnemies();
         }
     }
 
     public void spawnEnemies()
     {
-        Vector3 coordinate = new Vector3(Random.Range(-8f, 19f), Random.Range(-3.5f, 16f), 0);
+        Vector3 coordinate = new Vector3(Random.Range(-67f, 25f), Random.Range(4f, 99f), 0);
         Instantiate(Enemy, coordinate, Quaternion.identity).transform.parent = this.gameObject.transform;
     }
 }

@@ -14,6 +14,7 @@ public class EnemyAI : MonoBehaviour
     public AudioPlayer enemyDeath;
     public GameObject target;
     UnityEngine.AI.NavMeshAgent agent;
+    public float speed;
 
     void Awake()
     {
@@ -26,7 +27,7 @@ public class EnemyAI : MonoBehaviour
     void Update()
     {
         agent.SetDestination(target.transform.position);
-        Vector3 vector = target.transform.position - this.transform.position;
+        Vector3 vector = (target.transform.position - this.transform.position) * speed;
         Quaternion targetRot = Quaternion.LookRotation(forward: Vector3.forward, upwards: Quaternion.Euler(0,0,90)*vector);
         this.transform.rotation = Quaternion.Slerp(transform.rotation, targetRot, Time.deltaTime);
     }
@@ -36,6 +37,11 @@ public class EnemyAI : MonoBehaviour
         if (collision.gameObject.CompareTag("Bullet"))
         {
             DestroyEnemy();
+        }
+        
+        else if (collision.gameObject.CompareTag("Player"))
+        {
+            Destroy(gameObject);
         }
     }
 
