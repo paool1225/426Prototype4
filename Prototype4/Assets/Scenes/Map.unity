@@ -137,8 +137,6 @@ GameObject:
   - component: {fileID: 119148055}
   - component: {fileID: 119148054}
   - component: {fileID: 119148059}
-  - component: {fileID: 119148060}
-  - component: {fileID: 119148061}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -308,114 +306,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ada99d3032732ec45a196b2e4d365872, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &119148060
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 119148053}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 611829bca3eaa9543aceffb99be19f32, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!82 &119148061
-AudioSource:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 119148053}
-  m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 0
-  m_Volume: 1
-  m_Pitch: 1
-  Loop: 0
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
 --- !u!1 &228864338
 GameObject:
   m_ObjectHideFlags: 0
@@ -1108,10 +998,6 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -3569505224924816165, guid: 4e01c9c0148b2fc4cba6c8c14e77406c, type: 3}
-      propertyPath: speed
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: -3569505224924816165, guid: 4e01c9c0148b2fc4cba6c8c14e77406c, type: 3}
       propertyPath: Player
       value: 
       objectReference: {fileID: 119148058}
@@ -1452,7 +1338,7 @@ GameObject:
   - component: {fileID: 901047519}
   - component: {fileID: 901047518}
   m_Layer: 0
-  m_Name: BGM
+  m_Name: bgm2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7744,7 +7630,7 @@ Transform:
   m_GameObject: {fileID: 1397551231}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 4.17, y: 14.51, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -8289,22 +8175,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gun: {fileID: 1645932022}
   enemyDeath: {fileID: 1645932025}
-<<<<<<< Updated upstream
   bombPickup: {fileID: 0}
   bombDrop: {fileID: 0}
-=======
-  player: {fileID: 0}
->>>>>>> Stashed changes
   pewSound: {fileID: 8300000, guid: b6c847951676623499e20ec8d07b1bc3, type: 3}
   enemyDeath1: {fileID: 8300000, guid: 1e743279e1130d14d923f4819be498d2, type: 3}
   enemyDeath2: {fileID: 8300000, guid: dd30f670103b75142b143228e645333e, type: 3}
   enemyDeath3: {fileID: 8300000, guid: 126916c9819c6114199bf30d5e5b556e, type: 3}
-<<<<<<< Updated upstream
   pickupSound: {fileID: 8300000, guid: c70cdbb38b0d56241aff5103f46c12ab, type: 3}
   dropSound: {fileID: 8300000, guid: 2ecb9888d504e07458a66f76c40b0813, type: 3}
-=======
-  playerHit: {fileID: 0}
->>>>>>> Stashed changes
 --- !u!82 &1645932025
 AudioSource:
   m_ObjectHideFlags: 0
@@ -8779,7 +8657,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Enemy: {fileID: 1400837378}
-  spawnRate: 0.5
 --- !u!4 &1982290640
 Transform:
   m_ObjectHideFlags: 0
