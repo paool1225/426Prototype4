@@ -14,6 +14,10 @@ public class PlayerController : MonoBehaviour
     private GameObject carriedObject;
     private bool isCarryingObject = false;
     private Vector3 originalPosition;
+    
+    private AudioSource gun;
+    private AudioClip bang;
+    private AudioClip jam;
 
     private Vector2 mousePosition;
     private Vector2 moveDirection;
@@ -25,13 +29,27 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         uiManager = FindObjectOfType<UIManager>();
+
+        bang = Resources.Load<AudioClip>("Audio/SFX/gun sound");
+        jam = Resources.Load<AudioClip>("Audio/SFX/error");
+
+        gun = GetComponent<AudioSource>();
     }
 
     void Update()
     {
         if (Input.GetMouseButtonDown(0))
         {
-            weapon.Fire();
+            if (!isCarryingObject)
+            {
+                gun.PlayOneShot(bang);
+                weapon.Fire();
+            }
+
+            else
+            {
+                gun.PlayOneShot(jam);
+            }
         }
 
         float moveX = Input.GetAxisRaw("Horizontal");

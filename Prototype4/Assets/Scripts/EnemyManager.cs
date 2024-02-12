@@ -23,7 +23,7 @@ public class EnemyManager : MonoBehaviour
 
     public void spawnEnemies()
     {
-        Vector3 coordinate = new Vector3(Random.Range(-8f, 19f), Random.Range(-3.5f, 16f), 0);
+        Vector3 coordinate = new Vector3(Random.Range(-67f, 24f), Random.Range(3f, 99f), 0);
         Instantiate(Enemy, coordinate, Quaternion.identity).transform.parent = this.gameObject.transform;
     }
 }
