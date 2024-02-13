@@ -1,15 +1,17 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public class healthSystem : MonoBehaviour
 {
     public int healthPoints;
-
+    public TMP_Text displayHealth;
+    
+    private UIManager health;
     private AudioSource damageTaken;
-
     private AudioClip bite;
     // Start is called before the first frame update
     void Start()
@@ -17,6 +19,8 @@ public class healthSystem : MonoBehaviour
         bite = Resources.Load<AudioClip>("Audio/SFX/bite");
 
         damageTaken = GetComponent<AudioSource>();
+
+        displayHealth.text = "Health: " + healthPoints;
     }
 
     // Update is called once per frame
@@ -34,6 +38,7 @@ public class healthSystem : MonoBehaviour
             if (healthPoints > 1)
             {
                 healthPoints--;
+                displayHealth.text = "Health: " + healthPoints;
             }
 
             else

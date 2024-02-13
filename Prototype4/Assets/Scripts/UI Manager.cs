@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,6 +16,7 @@ public class UIManager : MonoBehaviour
     private bool isHoldingPart = false;
     private int partsInZone = 0;
     private bool getawayCarEnabled = false;
+    public healthSystem player;
     public EnemyAI enemy;
 
     void Start()
@@ -33,6 +35,15 @@ public class UIManager : MonoBehaviour
         partsCollectedText.text = "Parts collected: " + partsCollected + "/4";
         partsLeftText.text = "Parts left: " + partsLeft + "/4";
         holdingPartText.text = "Holding part: " + (isHoldingPart ? "Yes" : "No");
+        if (isHoldingPart)
+        {
+            holdingPartText.color = Color.red;
+        }
+
+        else
+        {
+            holdingPartText.color = new Color(0.1218503f, 0.5396226f, 0, 1);
+        }
     }
 
     // Call this method when a bomb part is collected
