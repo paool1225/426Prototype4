@@ -14,21 +14,24 @@ public class EnemyAI : MonoBehaviour
     //public Transform Player;
     public AudioPlayer enemyDeath;
     public GameObject target;
-    private static float speed;
     UnityEngine.AI.NavMeshAgent agent;
+    //private EnemyBehavior speedBehavior;
 
     void Awake()
     {
         agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
         agent.updateRotation = false;
         agent.updateUpAxis = false;
+
+        agent.speed = 5;
+        agent.acceleration = 1;
     }
     
     // Update is called once per frame
     void Update()
     {
         agent.SetDestination(target.transform.position);
-        Vector3 vector = target.transform.position - this.transform.position * speed;
+        Vector3 vector = target.transform.position - this.transform.position;
         Quaternion targetRot = Quaternion.LookRotation(forward: Vector3.forward, upwards: Quaternion.Euler(0,0,90)*vector);
         this.transform.rotation = Quaternion.Slerp(transform.rotation, targetRot, Time.deltaTime);
     }
@@ -62,10 +65,5 @@ public class EnemyAI : MonoBehaviour
                 break;
         }
         Destroy(gameObject);
-    }
-
-    public static void changeSpeed(string change)
-    {
-        speed += 0.5f;
     }
 }
