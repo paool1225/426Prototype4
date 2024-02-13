@@ -18,8 +18,11 @@ public class PlayerController : MonoBehaviour
     private bool droppedInDropOffZone = false;
 
     private AudioSource gun;
+    private AudioSource bomb;
     private AudioClip bang;
     private AudioClip jam;
+    private AudioClip bombPickup;
+    private AudioClip bombDrop;
 
     private Vector2 mousePosition;
     private Vector2 moveDirection;
@@ -32,8 +35,11 @@ public class PlayerController : MonoBehaviour
 
         bang = Resources.Load<AudioClip>("Audio/SFX/gun sound");
         jam = Resources.Load<AudioClip>("Audio/SFX/error");
+        bombPickup = Resources.Load<AudioClip>("Audio/SFX/bombPickup");
+        bombDrop = Resources.Load<AudioClip>("Audio/SFX/bombDropoff");
 
         gun = GetComponent<AudioSource>();
+        bomb = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -69,6 +75,7 @@ public class PlayerController : MonoBehaviour
                 RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, Mathf.Infinity, objectLayer);
                 if (hit.collider != null)
                 {
+                    bomb.PlayOneShot(bombPickup);
                     carriedObject = hit.collider.gameObject;
                     originalPosition = carriedObject.transform.position;
                     carriedObject.SetActive(false);
@@ -80,6 +87,7 @@ public class PlayerController : MonoBehaviour
             }
             else
             {
+<<<<<<< HEAD
                 if (droppedInDropOffZone || canDropOutsideZone)
                 {
                     carriedObject.transform.position = transform.position + transform.right;
@@ -98,6 +106,17 @@ public class PlayerController : MonoBehaviour
                 {
                     Debug.Log("Bomb part must be set down in the DropOffZone or you can drop it outside the zone");
                 }
+=======
+                bomb.PlayOneShot(bombDrop);
+                carriedObject.transform.position = transform.position + transform.right; // Set down the bomb in front of the player
+                carriedObject.SetActive(true); // Activate the bomb object
+                carriedObject = null;
+                
+                uiManager.SetHoldingPart(false);
+                uiManager.DecreasePartsLeft();
+                uiManager.IncreasePartsCollected();
+                isCarryingObject = false;
+>>>>>>> 0a37b1a15eda9ff1ea4fa500fd0f9381908601a5
             }
         }
     }
