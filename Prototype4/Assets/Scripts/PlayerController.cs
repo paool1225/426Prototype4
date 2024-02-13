@@ -1,9 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.EventSystems;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.EventSystems;
 
 public class PlayerController : MonoBehaviour
 {
@@ -13,16 +13,12 @@ public class PlayerController : MonoBehaviour
     public LayerMask objectLayer;
     private GameObject carriedObject;
     private bool isCarryingObject = false;
-    private bool canDropOutsideZone = false; // New flag to allow dropping outside the zone
-    private Vector3 originalPosition;
+    private bool canDropOutsideZone = false;
     private bool droppedInDropOffZone = false;
 
     private AudioSource gun;
-    private AudioSource bomb;
     private AudioClip bang;
     private AudioClip jam;
-    private AudioClip bombPickup;
-    private AudioClip bombDrop;
 
     private Vector2 mousePosition;
     private Vector2 moveDirection;
@@ -35,11 +31,8 @@ public class PlayerController : MonoBehaviour
 
         bang = Resources.Load<AudioClip>("Audio/SFX/gun sound");
         jam = Resources.Load<AudioClip>("Audio/SFX/error");
-        bombPickup = Resources.Load<AudioClip>("Audio/SFX/bombPickup");
-        bombDrop = Resources.Load<AudioClip>("Audio/SFX/bombDropoff");
 
         gun = GetComponent<AudioSource>();
-        bomb = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -71,54 +64,53 @@ public class PlayerController : MonoBehaviour
         {
             if (!isCarryingObject)
             {
-                Vector2 direction = transform.right;
-                RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, Mathf.Infinity, objectLayer);
-                if (hit.collider != null)
-                {
-                    bomb.PlayOneShot(bombPickup);
-                    carriedObject = hit.collider.gameObject;
-                    originalPosition = carriedObject.transform.position;
-                    carriedObject.SetActive(false);
-
-                    uiManager.SetHoldingPart(true);
-                    isCarryingObject = true;
-                    canDropOutsideZone = true; // Allow dropping outside the zone
-                }
+                PickUpBomb();
             }
             else
             {
-<<<<<<< HEAD
-                if (droppedInDropOffZone || canDropOutsideZone)
+                if (droppedInDropOffZone)
                 {
-                    carriedObject.transform.position = transform.position + transform.right;
-                    carriedObject.SetActive(true);
-                    carriedObject = null;
-
-                    uiManager.SetHoldingPart(false);
-                    if (droppedInDropOffZone)
-                    {
-                        uiManager.DecreasePartsLeft();
-                        uiManager.IncreasePartsCollected();
-                    }
-                    isCarryingObject = false;
+                    PutDownBomb();
+                }
+                else if (canDropOutsideZone)
+                {
+                    PutDownBomb();
                 }
                 else
                 {
-                    Debug.Log("Bomb part must be set down in the DropOffZone or you can drop it outside the zone");
+                    Debug.Log("Bomb part must be set down in the DropOffZone.");
                 }
-=======
-                bomb.PlayOneShot(bombDrop);
-                carriedObject.transform.position = transform.position + transform.right; // Set down the bomb in front of the player
-                carriedObject.SetActive(true); // Activate the bomb object
-                carriedObject = null;
-                
-                uiManager.SetHoldingPart(false);
-                uiManager.DecreasePartsLeft();
-                uiManager.IncreasePartsCollected();
-                isCarryingObject = false;
->>>>>>> 0a37b1a15eda9ff1ea4fa500fd0f9381908601a5
             }
         }
+    }
+
+    private void PickUpBomb()
+    {
+        Vector2 direction = transform.right;
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, Mathf.Infinity, objectLayer);
+        if (hit.collider != null)
+        {
+            carriedObject = hit.collider.gameObject;
+            carriedObject.SetActive(false);
+            uiManager.SetHoldingPart(true);
+            isCarryingObject = true;
+            canDropOutsideZone = true;
+        }
+    }
+
+    private void PutDownBomb()
+    {
+        carriedObject.transform.position = transform.position + transform.right;
+        carriedObject.SetActive(true);
+        carriedObject = null;
+        uiManager.SetHoldingPart(false);
+        if (droppedInDropOffZone)
+        {
+            uiManager.DecreasePartsLeft();
+            uiManager.IncreasePartsCollected();
+            droppedInDropOffZone = false; // Reset to disallow further dropping in drop-off zone
+        }
+        isCarryingObject = false;
     }
 
     private void FixedUpdate()
