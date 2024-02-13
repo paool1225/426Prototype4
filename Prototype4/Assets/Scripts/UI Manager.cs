@@ -15,6 +15,7 @@ public class UIManager : MonoBehaviour
     private bool isHoldingPart = false;
     private int partsInZone = 0;
     private bool getawayCarEnabled = false;
+    public EnemyAI enemy;
 
     void Start()
     {
@@ -39,6 +40,7 @@ public class UIManager : MonoBehaviour
     {
         partsCollected++;
         UpdateUI();
+        
     }
 
     // Call this method when a bomb part is dropped off

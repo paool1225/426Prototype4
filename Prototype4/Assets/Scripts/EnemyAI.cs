@@ -14,7 +14,7 @@ public class EnemyAI : MonoBehaviour
     //public Transform Player;
     public AudioPlayer enemyDeath;
     public GameObject target;
-    public float speed;
+    private static float speed;
     UnityEngine.AI.NavMeshAgent agent;
 
     void Awake()
@@ -62,5 +62,10 @@ public class EnemyAI : MonoBehaviour
                 break;
         }
         Destroy(gameObject);
+    }
+
+    public static void changeSpeed(string change)
+    {
+        speed += 0.5f;
     }
 }
