@@ -28,8 +28,12 @@ public class AudioPlayer : MonoBehaviour
             case "enemyDeath3":
                 enemyDeath.PlayOneShot(enemyDeath3);
                 break;
-            
-          
+            case "pickup":
+                bombPickup.PlayOneShot(pickupSound);
+                break;
+            case "drop":
+                bombDrop.PlayOneShot(dropSound);
+                break;
         }
     }
 }

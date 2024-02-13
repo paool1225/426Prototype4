@@ -11,6 +11,7 @@ TagManager:
   - DropOffZone
   - BombPart
   - Bomb
+  - GetAwayCar
   layers:
   - Default
   - TransparentFX

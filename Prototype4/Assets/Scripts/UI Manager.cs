@@ -8,11 +8,13 @@ public class UIManager : MonoBehaviour
     public TMP_Text partsCollectedText;
     public TMP_Text partsLeftText;
     public TMP_Text holdingPartText;
+    public GameObject getawayCar; // Reference to the getaway car GameObject
 
     private int partsCollected = 0;
     private int partsLeft = 4;
     private bool isHoldingPart = false;
     private int partsInZone = 0;
+    private bool getawayCarEnabled = false;
 
     void Start()
     {
@@ -81,24 +83,17 @@ public class UIManager : MonoBehaviour
         {
             DecreasePartsLeft();
             partsInZone = 0;
+            EnableGetawayCar(); // Enable the getaway car
         }
     }
 
-    // Handle entering the drop-off zone
-    void OnTriggerEnter(Collider other)
+    // Enable the getaway car once all bomb parts are delivered
+    void EnableGetawayCar()
     {
-        if (other.CompareTag("DropOffZone"))
+        if (!getawayCarEnabled)
         {
-            IncreasePartsInZone();
-        }
-    }
-
-    // Handle exiting the drop-off zone
-    void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("DropOffZone"))
-        {
-            DecreasePartsInZone();
+            getawayCar.SetActive(true);
+            getawayCarEnabled = true;
         }
     }
 }
