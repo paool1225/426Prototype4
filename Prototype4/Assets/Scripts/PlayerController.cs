@@ -62,7 +62,7 @@ public class PlayerController : MonoBehaviour
         {
             RestartGame();
         }
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Q))
         {
             if (!isCarryingObject)
             {

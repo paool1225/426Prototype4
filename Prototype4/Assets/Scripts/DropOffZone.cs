@@ -6,17 +6,17 @@ public class DropOffZone : MonoBehaviour
 {
     public UIManager uiManager;
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if (collision.CompareTag("BombPart"))
+        if (other.CompareTag("BombPart"))
         {
             uiManager.IncreasePartsInZone(); // Increment the count of bomb parts in the zone
         }
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
+    private void OnTriggerExit(Collider other)
     {
-        if (collision.CompareTag("BombPart"))
+        if (other.CompareTag("BombPart"))
         {
             uiManager.DecreasePartsInZone(); // Decrement the count of bomb parts in the zone
         }

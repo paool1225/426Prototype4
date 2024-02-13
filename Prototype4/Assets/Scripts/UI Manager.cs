@@ -61,6 +61,7 @@ public class UIManager : MonoBehaviour
     {
         partsInZone++;
         UpdateUI();
+        CheckDropOff();
     }
 
     // Call this method when a bomb part exits the drop-off zone
@@ -70,6 +71,34 @@ public class UIManager : MonoBehaviour
         {
             partsInZone--;
             UpdateUI();
+        }
+    }
+
+    // Check if all parts are in the drop-off zone
+    void CheckDropOff()
+    {
+        if (partsInZone == 4)
+        {
+            DecreasePartsLeft();
+            partsInZone = 0;
+        }
+    }
+
+    // Handle entering the drop-off zone
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("DropOffZone"))
+        {
+            IncreasePartsInZone();
+        }
+    }
+
+    // Handle exiting the drop-off zone
+    void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("DropOffZone"))
+        {
+            DecreasePartsInZone();
         }
     }
 }
