@@ -13,8 +13,10 @@ public class PlayerController : MonoBehaviour
     public LayerMask objectLayer;
     private GameObject carriedObject;
     private bool isCarryingObject = false;
+    private bool canDropOutsideZone = false; // New flag to allow dropping outside the zone
     private Vector3 originalPosition;
-    
+    private bool droppedInDropOffZone = false;
+
     private AudioSource gun;
     private AudioClip bang;
     private AudioClip jam;
@@ -23,8 +25,6 @@ public class PlayerController : MonoBehaviour
     private Vector2 moveDirection;
 
     UIManager uiManager;
-
-    // Update is called once per frame
 
     void Start()
     {
@@ -45,7 +45,6 @@ public class PlayerController : MonoBehaviour
                 gun.PlayOneShot(bang);
                 weapon.Fire();
             }
-
             else
             {
                 gun.PlayOneShot(jam);
@@ -66,31 +65,41 @@ public class PlayerController : MonoBehaviour
         {
             if (!isCarryingObject)
             {
-                Vector2 direction = transform.right; // Assuming the player's forward direction is facing right
+                Vector2 direction = transform.right;
                 RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, Mathf.Infinity, objectLayer);
                 if (hit.collider != null)
                 {
                     carriedObject = hit.collider.gameObject;
                     originalPosition = carriedObject.transform.position;
-                    carriedObject.SetActive(false); // Deactivate the bomb object
-                   
+                    carriedObject.SetActive(false);
+
                     uiManager.SetHoldingPart(true);
                     isCarryingObject = true;
+                    canDropOutsideZone = true; // Allow dropping outside the zone
                 }
             }
             else
             {
-                carriedObject.transform.position = transform.position + transform.right; // Set down the bomb in front of the player
-                carriedObject.SetActive(true); // Activate the bomb object
-                carriedObject = null;
-                
-                uiManager.SetHoldingPart(false);
-                uiManager.DecreasePartsLeft();
-                uiManager.IncreasePartsCollected();
-                isCarryingObject = false;
+                if (droppedInDropOffZone || canDropOutsideZone)
+                {
+                    carriedObject.transform.position = transform.position + transform.right;
+                    carriedObject.SetActive(true);
+                    carriedObject = null;
+
+                    uiManager.SetHoldingPart(false);
+                    if (droppedInDropOffZone)
+                    {
+                        uiManager.DecreasePartsLeft();
+                        uiManager.IncreasePartsCollected();
+                    }
+                    isCarryingObject = false;
+                }
+                else
+                {
+                    Debug.Log("Bomb part must be set down in the DropOffZone or you can drop it outside the zone");
+                }
             }
         }
-        
     }
 
     private void FixedUpdate()
@@ -104,6 +113,22 @@ public class PlayerController : MonoBehaviour
 
     private void RestartGame()
     {
-        SceneManager.LoadScene( SceneManager.GetActiveScene().name );
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("DropOffZone"))
+        {
+            droppedInDropOffZone = true;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.CompareTag("DropOffZone"))
+        {
+            droppedInDropOffZone = false;
+        }
     }
 }
