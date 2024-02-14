@@ -8,7 +8,6 @@ public class EnemyBehavior : MonoBehaviour
 {
     private float currentSpeed;
     private float currentAcceleration;
-    private bool needsToUpdate = false;
 
     private NavMeshAgent agent;
     // Start is called before the first frame update

@@ -5,9 +5,6 @@ using UnityEngine;
 
 public class EnemyManager : MonoBehaviour
 {
-    private float currentSpeed = 5f;
-    private float currentAcceleration = 5f;
-    
     public GameObject Enemy;
     // Start is called before the first frame update
     void Start()
