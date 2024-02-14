@@ -111,7 +111,7 @@ public class PlayerController : MonoBehaviour
         {
             uiManager.DecreasePartsLeft();
             uiManager.IncreasePartsCollected();
-            FindObjectOfType<EnemyBehavior>().BombDelivered("increase", enemySpeed, enemyAcceleration);
+            //FindObjectOfType<EnemyBehavior>().BombDelivered("increase", enemySpeed, enemyAcceleration);
             enemySpeed += 1.5f;
             enemyAcceleration *= 1.5f;
             droppedInDropOffZone = false; // Reset to disallow further dropping in drop-off zone
