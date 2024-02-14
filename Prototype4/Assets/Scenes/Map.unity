@@ -438,8 +438,8 @@ MonoBehaviour:
   partsLeftText: {fileID: 228864340}
   holdingPartText: {fileID: 1188484894}
   getawayCar: {fileID: 1322671180}
-  player: {fileID: 0}
-  enemy: {fileID: 0}
+  player: {fileID: 119148061}
+  enemy: {fileID: 1400837387}
 --- !u!1 &228864338
 GameObject:
   m_ObjectHideFlags: 0
@@ -8249,6 +8249,17 @@ NavMeshAgent:
   m_BaseOffset: 0.5
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &1400837387 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: -3569505224924816165, guid: 4e01c9c0148b2fc4cba6c8c14e77406c, type: 3}
+  m_PrefabInstance: {fileID: 559594144}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1400837378}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f03b218cc075af34185ca477381eee37, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1519540329
 GameObject:
   m_ObjectHideFlags: 0
