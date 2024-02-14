@@ -6,7 +6,9 @@ using UnityEngine;
 
 public class EnemyBehavior : MonoBehaviour
 {
-    private static float speedIncrement = 5f, accelerationIncrement = 2f;
+    private float currentSpeed;
+    private float currentAcceleration;
+    private bool needsToUpdate = false;
 
     private NavMeshAgent agent;
     // Start is called before the first frame update
@@ -15,15 +17,31 @@ public class EnemyBehavior : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
     }
 
-    private void OneBulletHit()
+    public void BombDelivered(string stat, float speed, float acceleration)
     {
-        IncreaseSpeedForAllEnemies();
+        currentSpeed = speed;
+        currentAcceleration = acceleration;
+        switch (stat)
+        {
+            case "increase":
+                currentSpeed += 1.5f;
+                currentAcceleration *= 1.5f;
+                IncreaseSpeedForAllEnemies();
+                break;
+            /*
+            case "decrease":
+                speedIncrement -= 1.5f;
+                accelerationIncrement -= 1.5f;
+                IncreaseSpeedForAllEnemies();
+                break;
+            */
+            default:
+                return;
+        }
     }
 
     private void IncreaseSpeedForAllEnemies()
     {
-        accelerationIncrement += speedIncrement;
-        speedIncrement += 5;
         GameObject[] enemy = GameObject.FindGameObjectsWithTag("Enemy");
 
         foreach (GameObject enemyObject in enemy)
@@ -31,17 +49,9 @@ public class EnemyBehavior : MonoBehaviour
             NavMeshAgent enemyAgent = enemyObject.GetComponent<NavMeshAgent>();
             if (enemyAgent != null)
             {
-                enemyAgent.speed += speedIncrement;
-                enemyAgent.acceleration += accelerationIncrement;
+                enemyAgent.speed = currentSpeed;
+                enemyAgent.acceleration = currentAcceleration;
             }
-        }
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Bullet"))
-        {
-            OneBulletHit();
         }
     }
 }

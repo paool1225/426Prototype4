@@ -23,13 +23,15 @@ public class EnemyAI : MonoBehaviour
         agent.updateRotation = false;
         agent.updateUpAxis = false;
 
-        agent.speed = 5;
-        agent.acceleration = 1;
+        agent.speed = 5f;
+        agent.acceleration = 5f;
     }
     
     // Update is called once per frame
     void Update()
     {
+        agent.speed = FindObjectOfType<PlayerController>().enemySpeed;
+        agent.acceleration = FindObjectOfType<PlayerController>().enemyAcceleration;
         agent.SetDestination(target.transform.position);
         Vector3 vector = target.transform.position - this.transform.position;
         Quaternion targetRot = Quaternion.LookRotation(forward: Vector3.forward, upwards: Quaternion.Euler(0,0,90)*vector);
